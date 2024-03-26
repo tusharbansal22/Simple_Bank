@@ -7,12 +7,14 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/require"
-	"github.com/techschool/simplebank/util"
+	"github.com/tusharbansal22/Simple_Bank/util"
 )
 
 func CreateRandomAccount(t *testing.T) Account {
+	user := CreateRandomUser(t)
+
 	arg := CreateAccountParams{
-		Owner:    util.RandomOwner(),
+		Owner:    user.Username,
 		Balance:  util.RandomMoney(),
 		Currency: util.RandomCurrency(),
 	}
@@ -91,7 +93,7 @@ func TestListAccounts(t *testing.T) {
 	require.NotEmpty(t, accounts)
 	require.Len(t, accounts, 5)
 
-	for _,account := range accounts{
+	for _, account := range accounts {
 		require.NotEmpty(t, account)
 	}
 

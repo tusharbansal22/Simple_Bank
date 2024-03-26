@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/require"
-	"github.com/techschool/simplebank/util"
+	"github.com/tusharbansal22/Simple_Bank/util"
 )
 
 func CreateRandomTransfer(account1, account2 Account, t *testing.T) Transfer {
