@@ -69,15 +69,15 @@ func randomUser(t *testing.T) (db.User, string) {
 
 func RequireBodyMatchUser(t *testing.T, body *bytes.Buffer, user db.User) {
 
-	var expectedUserResponse createUserResponse
+	var expectedUserResponse userResponse
 	data, err := ioutil.ReadAll(body)
 	require.NoError(t, err)
 
-	var gotUserResponse createUserResponse
+	var gotUserResponse userResponse
 	err = json.Unmarshal(data, &gotUserResponse)
 	require.NoError(t, err)
 
-	expectedUserResponse = createUserResponse{
+	expectedUserResponse = userResponse{
 		Username:          user.Username,
 		FullName:          user.FullName,
 		Email:             user.Email,
@@ -223,7 +223,7 @@ func TestCreateUserAPI(t *testing.T) {
 			store := mockdb.NewMockStore(ctrl)
 			tc.buildStubs(store)
 
-			server := NewServer(store)
+			server := newTestServer(t, store)
 			recorder := httptest.NewRecorder()
 
 			data, err := json.Marshal(tc.body)
