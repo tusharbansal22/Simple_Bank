@@ -17,6 +17,9 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v3
 
+    - name: Load secrets and save to env
+      run: aws secretsmanager get-secret-value --secret-id simple_bank --query SecretString --output text | jq -r 'to_entries | map("\(.key)=\(.value)")|.[]' > sample.env
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
