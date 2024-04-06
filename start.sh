@@ -5,10 +5,9 @@ set -e
 echo "run db migration"
 
 
-
-cat /app/main
 cat /app/sample.env
 source /app/sample.env
+ls /app
 
 echo "$DB_DRIVER"
 echo "$DB_SOURCE"
