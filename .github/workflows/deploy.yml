@@ -5,7 +5,7 @@ name: Deploy on AWS
 
 on:
   push:
-    branches: [ "fix/url_empty" ]
+    branches: [ "main" ]
 
 jobs:
 
